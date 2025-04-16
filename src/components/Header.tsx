@@ -1,5 +1,5 @@
 
-import { Calendar, BarChart, Settings } from 'lucide-react';
+import { Home, Calendar, BarChart, Settings } from 'lucide-react';
 import { useTheme } from './ThemeContext';
 import type { TabType, MainViewType } from '@/types';
 
@@ -12,13 +12,25 @@ interface Props {
 
 export function Header({ activeTab, setActiveTab, mainView, setMainView }: Props) {
   const { themeClasses } = useTheme();
+  
+  const goHome = () => {
+    setMainView('today');
+  };
 
   return (
     <div className={`${themeClasses.card} p-4 rounded-b-xl shadow-sm sticky top-0 z-10`}>
       <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center gap-2">
-          <Calendar size={24} className="text-blue-600" />
-          <h1 className="text-xl font-bold">Zen Tasks</h1>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={goHome}
+            className={`p-2 rounded-lg ${themeClasses.textSecondary} hover:bg-gray-100 dark:hover:bg-gray-700`}
+          >
+            <Home size={20} />
+          </button>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={goHome}>
+            <Calendar size={24} className="text-blue-600" />
+            <h1 className="text-xl font-bold">Growth Loop</h1>
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <button 
